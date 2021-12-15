@@ -38,5 +38,27 @@ namespace ShopBridge.Controllers
                 return this.NotFound(new { Status = false, ex.Message });
             }
         }
+
+        [HttpPut]
+        [Route("api/modifyItem")]
+        public async Task<IActionResult> ModifyItem([FromBody] Inventory item)
+        {
+            try
+            {
+                var data = await this.manager.ModifyItem(item);
+                if (data != null)
+                {
+                    return this.Ok(new ResponseModel<Inventory> { Status = true, Message = "Item Modified Successfully", Data = data });
+                }
+                else
+                {
+                    return this.BadRequest(new { Status = false, Message = "Item not Modified." });
+                }
+            }
+            catch (Exception ex)
+            {
+                return this.NotFound(new { Status = false, ex.Message });
+            }
+        }
     }
 }

@@ -9,5 +9,7 @@ namespace BusinessLogicLayer.Interface
     public interface IAdminManager
     {
         Task<Inventory> AddItem(Inventory item);
+        Task<Inventory> ModifyItem(Inventory item);
+        
     }
 }

@@ -28,5 +28,17 @@ namespace BusinessLogicLayer.Manager
                 throw new Exception(ex.Message);
             }
         }
+
+        public async Task<Inventory> ModifyItem(Inventory item)
+        {
+            try
+            {
+                return await this.repository.ModifyItem(item);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
     }
 }
