@@ -10,5 +10,6 @@ namespace DataAccessLayer.Interface
     {
         Task<Inventory> AddItem(Inventory item);
         Task<Inventory> ModifyItem(Inventory item);
+        Task<bool> DeleteItem(int id);
     }
 }

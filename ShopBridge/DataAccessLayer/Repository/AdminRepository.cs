@@ -54,5 +54,25 @@ namespace DataAccessLayer.Repository
                 throw new Exception(ex.Message);
             }
         }
+
+        public async Task<bool> DeleteItem(int id)
+        {
+            try
+            {
+                var itemExist = this.context.Inventory.Where(x => x.Id == id).SingleOrDefault();
+                if (itemExist != null)
+                {                  
+                    this.context.Inventory.Remove(itemExist);
+                    await this.context.SaveChangesAsync();
+                    return true;
+                }
+
+                return false;
+            }
+            catch (ArgumentNullException ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
     }
 }

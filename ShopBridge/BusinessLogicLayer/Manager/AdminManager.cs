@@ -40,5 +40,17 @@ namespace BusinessLogicLayer.Manager
                 throw new Exception(ex.Message);
             }
         }
+
+        public async Task<bool> DeleteItem(int id)
+        {
+            try
+            {
+                return await this.repository.DeleteItem(id);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
     }
 }

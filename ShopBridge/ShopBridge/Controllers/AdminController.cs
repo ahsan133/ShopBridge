@@ -60,5 +60,27 @@ namespace ShopBridge.Controllers
                 return this.NotFound(new { Status = false, ex.Message });
             }
         }
+
+        [HttpDelete]
+        [Route("api/deleteItem")]
+        public async Task<IActionResult> DeleteItem(int id)
+        {
+            try
+            {
+                bool data = await this.manager.DeleteItem(id);
+                if (data)
+                {
+                    return this.Ok(new { Status = true, Message = "Item deleted." });
+                }
+                else
+                {
+                    return this.BadRequest(new { Status = false, Message = "Item not deleted." });
+                }
+            }
+            catch (Exception ex)
+            {
+                return this.NotFound(new { Status = false, ex.Message });
+            }
+        }
     }
 }

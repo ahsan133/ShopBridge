@@ -39,5 +39,14 @@ namespace ShopBridgeTesting
             var data = controller.ModifyItem(input);
             Assert.NotNull(data);
         }
+
+        [Fact]
+        public void WhenItemDeleted_ShouldDeleteitem()
+        {
+            var services = new Mock<IAdminManager>();
+            var controller = new AdminController(services.Object);
+            var data = controller.DeleteItem(2);
+            Assert.NotNull(data);
+        }
     }
 }
