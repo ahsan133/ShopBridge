@@ -82,5 +82,27 @@ namespace ShopBridge.Controllers
                 return this.NotFound(new { Status = false, ex.Message });
             }
         }
+
+        [HttpGet]
+        [Route("api/getItems")]
+        public async Task<IActionResult> GetItems()
+        {
+            try
+            {
+                var data = await this.manager.GetItems();
+                if (data != null)
+                {
+                    return this.Ok(new ResponseModel<IEnumerable<Inventory>> { Status = true, Message = "Item Retreived Successfully", Data = data });
+                }
+                else
+                {
+                    return this.BadRequest(new { Status = false, Message = "There are no item in the Inventory." });
+                }
+            }
+            catch (Exception ex)
+            {
+                return this.NotFound(new { Status = false, ex.Message });
+            }
+        }
     }
 }

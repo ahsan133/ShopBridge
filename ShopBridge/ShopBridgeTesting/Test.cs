@@ -10,7 +10,7 @@ namespace ShopBridgeTesting
     public class Test
     {
         [Fact]
-        public void WhenItemAdded_ShouldAdditem()
+        public void WhenItemAdded_ShouldAddItem()
         {
             var services = new Mock<IAdminManager>();
             var controller = new AdminController(services.Object);
@@ -25,7 +25,7 @@ namespace ShopBridgeTesting
         }
 
         [Fact]
-        public void WhenItemModified_ShouldModifyitem()
+        public void WhenItemModified_ShouldModifyItem()
         {
             var services = new Mock<IAdminManager>();
             var controller = new AdminController(services.Object);
@@ -41,11 +41,20 @@ namespace ShopBridgeTesting
         }
 
         [Fact]
-        public void WhenItemDeleted_ShouldDeleteitem()
+        public void WhenItemDeleted_ShouldDeleteItem()
         {
             var services = new Mock<IAdminManager>();
             var controller = new AdminController(services.Object);
             var data = controller.DeleteItem(2);
+            Assert.NotNull(data);
+        }
+
+        [Fact]
+        public void WhenItemsRetreived_ShouldRetreiveItem()
+        {
+            var services = new Mock<IAdminManager>();
+            var controller = new AdminController(services.Object);
+            var data = controller.GetItems();
             Assert.NotNull(data);
         }
     }

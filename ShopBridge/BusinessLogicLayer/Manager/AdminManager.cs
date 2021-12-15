@@ -52,5 +52,17 @@ namespace BusinessLogicLayer.Manager
                 throw new Exception(ex.Message);
             }
         }
+
+        public async Task<IEnumerable<Inventory>> GetItems()
+        {
+            try
+            {
+                return await this.repository.GetItems();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
     }
 }

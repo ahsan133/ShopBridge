@@ -1,5 +1,6 @@
 ﻿using DataAccessLayer.Context;
 using DataAccessLayer.Interface;
+using Microsoft.EntityFrameworkCore;
 using Models;
 using System;
 using System.Collections.Generic;
@@ -68,6 +69,24 @@ namespace DataAccessLayer.Repository
                 }
 
                 return false;
+            }
+            catch (ArgumentNullException ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public async Task<IEnumerable<Inventory>> GetItems()
+        {
+            try
+            {
+                var data = await this.context.Inventory.ToListAsync();
+                if (data != null)
+                {
+                    return data;
+                }
+
+                return null;
             }
             catch (ArgumentNullException ex)
             {
